@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { RouterLink } from "vue-router";
 import Pagination from "./Pagination.vue";
 import SortProducts from "./SortProducts.vue";
 import InfoItem from "./InfoItem.vue";
@@ -21,17 +22,13 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        this.isLoading = true;
         const response = await axios.get(
           `https://dev.api.logicpower.ua/user/catalog/product/list/all?pageSize=${this.pageSize}&pageNum=${this.pageNum}`
         );
         this.products = response.data.data.items;
         this.totalItems = response.data.data.totalItems;
-        console.log(response.data.data.items);
       } catch (e) {
         this.errors.push(e);
-      } finally {
-        this.isLoading = false;
       }
     },
     onChangePage(data) {
@@ -45,14 +42,13 @@ export default {
     handleClickBtn(index) {
       this.isShow = true;
       this.infoItem.push(this.products[index]);
-      console.log(this.infoItem[0]);
     },
     setIsShow(data) {
       this.infoItem = [];
       this.isShow = data.isShow;
     },
   },
-  mounted() {
+  created() {
     this.fetchProducts();
   },
 };
@@ -78,7 +74,7 @@ export default {
           {{ item.name.uk !== null ? item.name.uk : this.isNull }}
         </h3>
         <p class="product__description">
-          {{ item.description.uk !== null ? item.description.uk : this.isNull }}
+          <!-- {{ item.description.uk !== null ? item.description.uk : this.isNull }} -->
         </p>
         <div class="product-price">
           <span class="product-price__text">Ціна: </span>
@@ -88,7 +84,10 @@ export default {
           >
           <span v-else> Незазначено</span>
         </div>
-        <button class="btn" @click="handleClickBtn(index)">Детально</button>
+        <div></div>
+        <button class="btn">
+          <RouterLink :to="`/product/${index + 1}`">Детально</RouterLink>
+        </button>
       </div>
     </div>
   </div>
@@ -97,11 +96,11 @@ export default {
     :totalItems="totalItems"
     @changePage="onChangePage"
   />
-  <InfoItem
+  <!-- <InfoItem
     :infoItem="infoItem"
     v-if="this.isShow !== false"
     @handleClick="setIsShow"
-  />
+  /> -->
 </template>
 
 <style>

@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <div class="info-item">
+  <!-- <div class="info-item">
     <div class="info-item__box">
       <button class="info-item__exit" @click="handleClick">X</button>
       <div class="info-item__container">
@@ -52,7 +52,8 @@ export default {
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <H1>hi</H1>
 </template>
 
 <style>

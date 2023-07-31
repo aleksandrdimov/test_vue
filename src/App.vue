@@ -1,13 +1,11 @@
 <script setup>
-import ProductItem from "./components/ProductItem.vue";
+import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <RouterView>
-    <div class="container">
-      <ProductItem />
-    </div>
-  </RouterView>
+  <div class="container">
+    <RouterView> </RouterView>
+  </div>
 </template>
 
 <style scoped>
