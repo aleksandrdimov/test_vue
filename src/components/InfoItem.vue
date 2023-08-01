@@ -1,4 +1,7 @@
 <script>
+import { useRoute } from "vue-router";
+const route = useRoute();
+
 export default {
   props: ["infoItem"],
   data() {
@@ -53,7 +56,7 @@ export default {
       </div>
     </div>
   </div> -->
-  <H1>hi</H1>
+  <H1>hi. Info item{{ $route.params.id }}</H1>
 </template>
 
 <style>
